@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Aerial</title>
-    <link>http://localhost:1313/</link>
+    <link>https://mikesmvl.github.io/</link>
     <description>Recent content on Aerial</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Untitled</copyright>
     
-	<atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikesmvl.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
