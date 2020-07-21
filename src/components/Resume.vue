@@ -5,7 +5,7 @@
                 <h3 class="title is-2">Resume</h3>
                 <h4 class="subtitle is-5">More about my past</h4>
                 <a
-                    href="../assets/Mikael_Samvelian.pdf"
+                    href="https://mikesmvl.github.io/Resume.pdf"
                     target="_blank"
                     class="button is-link is-medium"
                 >

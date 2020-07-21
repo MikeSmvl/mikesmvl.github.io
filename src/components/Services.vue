@@ -24,7 +24,7 @@
                                 <h4 class="title is-5">
                                     Back End Web Development
                                 </h4>
-                                Develop Back End application/service using
+                                Develop Back End applications or services using
                                 OpenAPI with Node.js and any SQL DBMS or Mongo
                                 DB.
                             </div>

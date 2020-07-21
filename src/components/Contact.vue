@@ -54,10 +54,12 @@
                                     </div>
                                 </div>
 
-                                <div class="field is-grouped has-text-centered">
-                                    <div class="control">
+                                <div
+                                    class="field is-grouped has-text-centered columns is-centered"
+                                >
+                                    <div class="control column">
                                         <button
-                                            class="button is-link is-large"
+                                            class="button is-link"
                                             type="submit"
                                         >
                                             <span class="icon">

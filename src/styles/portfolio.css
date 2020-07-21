@@ -1,5 +1,5 @@
 .has-same-height .card {
-    height: 320px;
+    height: 400px;
     overflow: hidden;
 }
 
@@ -39,4 +39,8 @@ th {
     text-align: center;
     margin-top: 1em;
     margin-bottom: 6em;
+}
+
+.is-link {
+    background-color: #6600ff !important;
 }

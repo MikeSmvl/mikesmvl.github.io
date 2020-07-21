@@ -9,7 +9,7 @@
                 <br />
 
                 <div class="container portfolio-container">
-                    <div class="columns">
+                    <div class="columns is-centered">
                         <div class="column is-4">
                             <!-- admin -->
                             <div class="card">
@@ -19,6 +19,7 @@
                                         <span class="is-pulled-right">
                                             <a
                                                 href="https://github.com/MikeSmvl/travelingstrategy/tags"
+                                                target="_blank"
                                             >
                                                 <span class="tag is-default"
                                                     >v3.0.0</span
@@ -44,11 +45,13 @@
                                 <footer class="card-footer">
                                     <a
                                         href="https://travelingstrategy.com"
+                                        target="_blank"
                                         class="card-footer-item"
                                         >Preview</a
                                     >
                                     <a
                                         href="https://github.com/MikeSmvl/travelingstrategy"
+                                        target="_blank"
                                         class="card-footer-item"
                                         >Source Code</a
                                     >

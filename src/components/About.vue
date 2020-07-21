@@ -21,7 +21,7 @@
                 </div>
             </div>
 
-            <div class="columns has-same-height is-gapless">
+            <div class="columns is-desktop has-same-height">
                 <div class="column">
                     <!-- Profile -->
                     <div class="card">
@@ -36,7 +36,7 @@
                                     </tr>
                                     <tr>
                                         <td>Address:</td>
-                                        <td>Montreal</td>
+                                        <td>Montreal, QC</td>
                                     </tr>
                                     <tr>
                                         <td>Phone:</td>
@@ -52,17 +52,20 @@
                             <div class="buttons has-addons is-centered">
                                 <a
                                     href="https://github.com/MikeSmvl"
-                                    class="button is-link"
+                                    target="_blank"
+                                    class="button is-rounded"
                                     >Github</a
                                 >
                                 <a
-                                    href="https://www.linkedin.com/in/mikaelsamvelian/ "
-                                    class="button is-link"
+                                    href="https://www.linkedin.com/in/mikaelsamvelian/"
+                                    target="_blank"
+                                    class="button is-rounded"
                                     >LinkedIn</a
                                 >
                                 <a
                                     href="https://twitter.com/mikesmvl"
-                                    class="button is-link"
+                                    target="_blank"
+                                    class="button is-rounded"
                                     >Twitter</a
                                 >
                             </div>
@@ -73,7 +76,7 @@
                     <!-- Profile picture -->
                     <div class="card">
                         <div class="card-image">
-                            <figure class="image is-4by3">
+                            <figure class="image container is-5by4">
                                 <img
                                     src="../assets/coding-bali.jpeg"
                                     alt="Coding Picture"
@@ -95,7 +98,23 @@
                                                 <strong>Python:</strong>
                                                 <br />
                                                 <progress
-                                                    class="progress is-primary"
+                                                    class="progress is-link"
+                                                    value="92"
+                                                    max="100"
+                                                ></progress>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="media">
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong>Javascript:</strong>
+                                                <br />
+                                                <progress
+                                                    class="progress is-link"
                                                     value="90"
                                                     max="100"
                                                 ></progress>
@@ -108,51 +127,10 @@
                                     <div class="media-content">
                                         <div class="content">
                                             <p>
-                                                <strong
-                                                    >Javascript (Node, Express,
-                                                    React and Vue):</strong
-                                                >
+                                                <strong>DevOps:</strong>
                                                 <br />
                                                 <progress
-                                                    class="progress is-primary"
-                                                    value="90"
-                                                    max="100"
-                                                ></progress>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <article class="media">
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p>
-                                                <strong
-                                                    >DevOps (Kubernetes, Docker
-                                                    and CI/CD):</strong
-                                                >
-                                                <br />
-                                                <progress
-                                                    class="progress is-primary"
-                                                    value="80"
-                                                    max="100"
-                                                ></progress>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <article class="media">
-                                    <div class="media-content">
-                                        <div class="content">
-                                            <p>
-                                                <strong
-                                                    >Test Driven Development
-                                                    (E2E Frameworks)</strong
-                                                >
-                                                <br />
-                                                <progress
-                                                    class="progress is-primary"
+                                                    class="progress is-link"
                                                     value="86"
                                                     max="100"
                                                 ></progress>
@@ -166,12 +144,30 @@
                                         <div class="content">
                                             <p>
                                                 <strong
-                                                    >Databases (SQL and
-                                                    NoSQL)</strong
+                                                    >Test Driven
+                                                    Development</strong
                                                 >
                                                 <br />
                                                 <progress
-                                                    class="progress is-primary"
+                                                    class="progress is-link"
+                                                    value="80"
+                                                    max="100"
+                                                ></progress>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="media">
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <strong
+                                                    >Databases (No)SQL</strong
+                                                >
+                                                <br />
+                                                <progress
+                                                    class="progress is-link"
                                                     value="70"
                                                     max="100"
                                                 ></progress>
@@ -194,4 +190,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.media-content {
+    margin: 10px;
+}
+.card-image,
+figure {
+    height: 100%;
+}
+</style>

@@ -3,7 +3,7 @@
         <footer class="footer">
             <div class="section-heading">
                 <p>
-                    <strong>Bulma Personal Template</strong> by
+                    <strong>Portfolio</strong> by
                     <a href="https://www.linkedin.com/in/mikaelsamvelian/"
                         >Mikael Samvelian</a
                     >. The source code is licensed
