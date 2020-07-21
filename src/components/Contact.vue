@@ -21,7 +21,7 @@
                                         <input
                                             class="input"
                                             type="text"
-                                            placeholder="Text input"
+                                            placeholder="Your Name"
                                             name="name"
                                         />
                                     </div>
@@ -33,7 +33,7 @@
                                         <input
                                             class="input"
                                             type="email"
-                                            placeholder="Email input"
+                                            placeholder="Your Email"
                                             value=""
                                             name="_replyto"
                                         />
@@ -48,7 +48,7 @@
                                     <div class="control">
                                         <textarea
                                             class="textarea"
-                                            placeholder="Textarea"
+                                            placeholder="Message"
                                             name="message"
                                         ></textarea>
                                     </div>
