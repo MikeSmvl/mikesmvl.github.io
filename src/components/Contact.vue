@@ -6,7 +6,6 @@
                     <h3 class="title is-2">Contact</h3>
                     <h4 class="subtitle is-5">Get in touch</h4>
                 </div>
-                <br />
 
                 <div class="columns">
                     <div class="column is-6 is-offset-3">

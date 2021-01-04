@@ -9,9 +9,57 @@
                 <br />
 
                 <div class="container portfolio-container">
-                    <div class="columns is-centered">
-                        <div class="column is-4">
-                            <!-- admin -->
+                    <div class="columns">
+                        <div class="column is-6">
+                            <!-- Can I Afford -->
+                            <div class="card">
+                                <header class="card-header">
+                                    <p class="card-header-title">
+                                        <span>Can I Afford</span>
+                                        <span class="is-pulled-right">
+                                            <a
+                                                href="https://github.com/MikeSmvl/caniafford/tags"
+                                                target="_blank"
+                                            >
+                                                <span class="tag is-default"
+                                                    >v1.0.0</span
+                                                >
+                                            </a>
+                                            <span class="tag is-default"
+                                                >Desktop</span
+                                            >
+                                            <span class="tag is-default"
+                                                >Mobile</span
+                                            >
+                                        </span>
+                                    </p>
+                                </header>
+                                <div class="card-content">
+                                    <figure class="image">
+                                        <img
+                                            src="https://i.imgur.com/Vcu1AqU.jpg"
+                                            alt="Can I Afford screenshot"
+                                        />
+                                    </figure>
+                                </div>
+                                <footer class="card-footer">
+                                    <a
+                                        href="https://www.caniafford.ca"
+                                        target="_blank"
+                                        class="card-footer-item"
+                                        >Preview</a
+                                    >
+                                    <a
+                                        href="https://github.com/MikeSmvl/caniafford"
+                                        target="_blank"
+                                        class="card-footer-item"
+                                        >Source Code</a
+                                    >
+                                </footer>
+                            </div>
+                        </div>
+                        <div class="column is-6">
+                            <!-- Traveling Strategy -->
                             <div class="card">
                                 <header class="card-header">
                                     <p class="card-header-title">
@@ -37,14 +85,14 @@
                                 <div class="card-content">
                                     <figure class="image">
                                         <img
-                                            src="https://camo.githubusercontent.com/56592ff49103c0b365c83e4b22bf37aa28f0360c/68747470733a2f2f692e696d6775722e636f6d2f534157366270462e706e67"
-                                            alt="Admin template screenshot"
+                                            src="https://i.imgur.com/8l0jywt.png"
+                                            alt="Traveling Strategy screenshot"
                                         />
                                     </figure>
                                 </div>
                                 <footer class="card-footer">
                                     <a
-                                        href="https://travelingstrategy.com"
+                                        href="https://github.com/MikeSmvl/travelingstrategy"
                                         target="_blank"
                                         class="card-footer-item"
                                         >Preview</a
