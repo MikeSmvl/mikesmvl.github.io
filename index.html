@@ -91,5 +91,18 @@
 			src="https://platform.twitter.com/widgets.js"
 			charset="utf-8"
 		></script>
+		<script
+			src="https://browser.sentry-cdn.com/6.19.6/bundle.tracing.min.js"
+			integrity="sha384-spx7oCG6Qgrx9nvSm2VB6yca4F8JvqY+982JS4ZDuQMk0V8Z069/yZu5GDywQyzx"
+			crossorigin="anonymous"
+		></script>
+		<script type="text/javascript">
+			Sentry.init({
+				dsn: 'https://47ea37e57dcf4e35be86554a53597a09@o1200319.ingest.sentry.io/6324266',
+				release: 'personal-website@1.0.0',
+				integrations: [new Sentry.BrowserTracing()],
+				tracesSampleRate: 1.0,
+			});
+		</script>
 	</body>
 </html>
