@@ -23,8 +23,8 @@ jobs:
           echo "VERSION: $tag_version"
       - name: Start release
         run: sentry-cli releases new ${{ env.tag_version }}
-      - name: Sync commits
-        run: sentry-cli releases set-commits --auto ${{ env.tag_version }}
+      # - name: Sync commits
+      #   run: sentry-cli releases set-commits --auto ${{ env.tag_version }}
       - name: Finalise release
         run: sentry-cli releases finalize ${{ env.tag_version }}
       - name: Deploy
