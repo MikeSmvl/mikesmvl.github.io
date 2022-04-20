@@ -17,12 +17,15 @@ jobs:
           organization: samvelian
           project: personal-website
       - name: Get tag name
-        run: echo "tag_name=${{ github.ref_name }}" >> $GITHUB_ENV
+        run: |
+          tag_name=${{ github.ref_name }}
+          echo "tag_version=${tag_name//v}" >> $GITHUB_ENV
+          echo "VERSION: $tag_version"
       - name: Start release
-        run: sentry-cli releases new ${{ env.tag_name }}
+        run: sentry-cli releases new ${{ env.tag_version }}
       - name: Sync commits
-        run: sentry-cli releases set-commits --auto ${{ env.tag_name }}
+        run: sentry-cli releases set-commits --auto ${{ env.tag_version }}
       - name: Finalise release
-        run: sentry-cli releases finalize ${{ env.tag_name }}
+        run: sentry-cli releases finalize ${{ env.tag_version }}
       - name: Deploy
-        run: sentry-cli releases deploys ${{ env.tag_name }} list
+        run: sentry-cli releases deploys ${{ env.tag_version }} list
