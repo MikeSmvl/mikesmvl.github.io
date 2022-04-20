@@ -20,7 +20,6 @@ jobs:
         run: |
           tag_name=${{ github.ref_name }}
           echo "tag_version=${tag_name//v}" >> $GITHUB_ENV
-          echo "VERSION: $tag_version"
       - name: Start release
         run: sentry-cli releases new ${{ env.tag_version }}
       # - name: Sync commits
@@ -28,4 +27,4 @@ jobs:
       - name: Finalise release
         run: sentry-cli releases finalize ${{ env.tag_version }}
       - name: Deploy
-        run: sentry-cli releases deploys ${{ env.tag_version }} list
+        run: sentry-cli releases deploys ${{ env.tag_version }} new -e production
