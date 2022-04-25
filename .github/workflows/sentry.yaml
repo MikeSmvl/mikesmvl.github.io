@@ -10,6 +10,10 @@ jobs:
   sentry:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          path: main
       - name: Setup Sentry CLI
         uses: mathieu-bour/setup-sentry-cli@1.2.0
         with:
@@ -23,8 +27,10 @@ jobs:
           echo "tag_version=${tag_name//v}" >> $GITHUB_ENV
       - name: Start release
         run: sentry-cli releases new ${{ env.tag_version }}
-      # - name: Sync commits
-      #   run: sentry-cli releases set-commits --auto ${{ env.tag_version }}
+      - name: Upload source maps
+        run: sentry-cli releases files ${{ env.tag_version }} upload-sourcemaps ./index.html
+      - name: Sync commits
+        run: sentry-cli releases set-commits --auto ${{ env.tag_version }}
       - name: Finalise release
         run: sentry-cli releases finalize ${{ env.tag_version }}
       - name: Deploy
