@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          path: main
       - name: Setup Sentry CLI
         uses: mathieu-bour/setup-sentry-cli@1.2.0
         with:
