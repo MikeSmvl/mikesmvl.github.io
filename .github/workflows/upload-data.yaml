@@ -1,0 +1,19 @@
+name: Upload data
+
+on: workflow_dispatch
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Save version
+        env:
+          VERSION: v1.10.0
+        run: |
+          mkdir -p ./pr
+          echo $VERSION > ./git/version
+      - uses: actions/upload-artifact@v3
+        with:
+          name: version
+          path: git/
