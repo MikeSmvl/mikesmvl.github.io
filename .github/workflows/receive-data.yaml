@@ -67,7 +67,7 @@ jobs:
             fi
             if [[ "${{ needs.download.result }}" == "success" ]]; then
                 echo ${{ needs.download.outputs.version }}
-                echo "::set-output name=tag::${{ needs.download.outputs.version }}
+                echo "::set-output name=tag::${{ needs.download.outputs.version }}"
             fi
   echo:
     runs-on: ubuntu-latest
