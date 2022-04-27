@@ -75,3 +75,12 @@ jobs:
     if: always() && needs.get-version.result == 'success'
     steps:
       - run: echo ${{ needs.get-version.outputs.version }}
+
+  report:
+    runs-on: ubuntu-latest
+    needs: [get-version, echo]
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: call api
+        run: |
+          echo "hello world"
