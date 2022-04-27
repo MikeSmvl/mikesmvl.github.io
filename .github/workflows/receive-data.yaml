@@ -47,6 +47,7 @@ jobs:
       - name: 'Export'
         run: |
           version=`cat ./version`
+          echo $version
           echo "::set-output name=version::$version"
 
   echo-input:
