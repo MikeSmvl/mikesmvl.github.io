@@ -11,9 +11,9 @@ jobs:
         env:
           VERSION: v1.10.0
         run: |
-          mkdir -p ./pr
-          echo $VERSION > ./git/version
+          mkdir -p ./artifact
+          echo $VERSION > ./artifact/version
       - uses: actions/upload-artifact@v3
         with:
           name: version
-          path: git/
+          path: artifact/
