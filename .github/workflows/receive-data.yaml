@@ -54,7 +54,7 @@ jobs:
   echo:
     runs-on: ubuntu-latest
     needs: [download]
-    if: always() && ${{ github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && needs.download.result == 'success') }}
+    if: always() && github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && needs.download.result == 'success')
     steps:
       - if: ${{ github.event_name == 'workflow_dispatch' }}
         run: echo ${{ github.event.inputs.version }}
