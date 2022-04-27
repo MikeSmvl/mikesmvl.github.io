@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     outputs:
-      version: ${{ steps.Export.outputs.version }}
+      version: ${{ steps.export.outputs.version }}
     steps:
       - name: 'Download artifact'
         uses: actions/github-script@v6
@@ -44,11 +44,12 @@ jobs:
       - name: 'Unzip artifact'
         run: unzip version.zip
 
-      - name: 'Export'
+      - name: 'Export artifact version'
+        id: 'export'
         run: |
           version=`cat ./version`
           echo $version
-          echo "::set-output name=version::$(cat ./version)"
+          echo "::set-output name=version::$version"
 
   echo-input:
     runs-on: ubuntu-latest
