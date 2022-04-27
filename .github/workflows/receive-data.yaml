@@ -35,4 +35,4 @@ jobs:
         run: unzip version.zip
 
       - name: 'Echo version'
-        run: echo ./version
+        run: cat ./version
