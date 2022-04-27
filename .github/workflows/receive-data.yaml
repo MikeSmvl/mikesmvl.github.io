@@ -62,8 +62,8 @@ jobs:
           id: conditional
           run: |
             if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-                echo ${{ github.event.inputs.version }}
-                echo "::set-output name=version::${{ github.event.inputs.version }}"
+                echo v${{ github.event.inputs.version }}
+                echo "::set-output name=version::v${{ github.event.inputs.version }}"
             fi
             if [[ "${{ needs.download.result }}" == "success" ]]; then
                 echo ${{ needs.download.outputs.version }}
