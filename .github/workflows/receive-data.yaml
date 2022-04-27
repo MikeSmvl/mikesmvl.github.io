@@ -63,11 +63,11 @@ jobs:
           run: |
             if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
                 echo ${{ github.event.inputs.version }}
-                echo "::set-output name=tag::${{ github.event.inputs.version }}"
+                echo "::set-output name=version::${{ github.event.inputs.version }}"
             fi
             if [[ "${{ needs.download.result }}" == "success" ]]; then
                 echo ${{ needs.download.outputs.version }}
-                echo "::set-output name=tag::${{ needs.download.outputs.version }}"
+                echo "::set-output name=version::${{ needs.download.outputs.version }}"
             fi
   echo:
     runs-on: ubuntu-latest
