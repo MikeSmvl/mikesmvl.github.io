@@ -52,8 +52,9 @@ a {
 }
 /* section 2 */
 .section-2 {
-	padding-top: 10vh;
-	width: 70%;
+	padding-top: 35vh;
+	text-align: center;
+	width: 50%;
 }
 
 .section-2 h2 {
@@ -77,6 +78,7 @@ a {
 .section-2 a.block {
 	display: block;
 	white-space: nowrap;
+	margin: auto;
 }
 /* animations / utilities */
 .section-2 a:hover {

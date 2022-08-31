@@ -1,0 +1,24 @@
+<script src="https://cdn.jsdelivr.net/npm/openpgp@4.3.0/dist/openpgp.min.js"></script>
+<script>
+	(async function () {
+		const password = prompt('enter password ("mypassword")');
+		// one of the results of previous snippet
+		const encrypted = `-----BEGIN PGP MESSAGE-----
+Version: OpenPGP.js v4.3.0
+Comment: https://openpgpjs.org
+
+wy4ECQMI5AhwiDl54tPg93smESrkZyBia3ql7AypV1RHIBBfRTnpYQ/ahs5Q
+Bbpr0mABah+TkKSMetHTE17io2AWWSAy1Pd2Ix/VWEMQQhrqIB6CfLck/Xy3
+Zt5NmBdvRakLs1QJIGAZe4uB2IlAWI102kdEVUaLn7JbZk0F1SN2+Ve7314q
++/527G8UBtaBnww=
+=fbEX
+-----END PGP MESSAGE-----`;
+		const decrypted = await openpgp.decrypt({
+			message: await openpgp.message.readArmored(encrypted),
+			passwords: [password],
+		});
+		const cleartext = decrypted.data;
+		console.log(cleartext);
+		new Function(cleartext)();
+	})().catch(console.error);
+</script>
