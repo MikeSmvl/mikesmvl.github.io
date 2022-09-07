@@ -1,6 +1,6 @@
 // <script src="https://cdn.jsdelivr.net/npm/openpgp@4.3.0/dist/openpgp.min.js"></script>
 (async function () {
-	const cleartext = 'location.href = "./Mikael_Samvelian.pdf"';
+	const cleartext = 'location.href = "./mikael_samvelian_resume_2022.pdf"';
 	const msg = openpgp.message.fromText(cleartext);
 	const ciphertext = await openpgp.encrypt({
 		message: msg,
