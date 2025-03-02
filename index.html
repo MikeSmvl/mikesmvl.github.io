@@ -1,63 +1,272 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<link
-			rel="stylesheet"
-			href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-			integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-			crossorigin="anonymous"
-		/>
-		<link rel="stylesheet" href="style.css" />
-		<title>Mikael Samvelian</title>
-		<script
-			src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js"
-			integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB"
-			crossorigin="anonymous"
-		>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
+	<title>Mikael Samvelian</title>
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: #0f1115;
+			color: #8b8e94;
+			line-height: 1.6;
+		}
+
+		.container {
+			display: flex;
+			min-height: 100vh;
+		}
+
+		.sidebar {
+			width: 35%;
+			min-height: 100vh;
+			padding: 3rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			position: fixed;
+		}
+
+		.content {
+			width: 65%;
+			margin-left: 35%;
+			padding: 3rem;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.profile-icon {
+			color: #fff;
+			margin-bottom: 1.5rem;
+		}
+
+		h1,
+		h2,
+		h3 {
+			color: #fff;
+			margin-bottom: 0.5rem;
+		}
+
+		.sidebar h1 {
+			font-size: 1.8rem;
+			font-weight: 600;
+		}
+
+		.sidebar h3 {
+			font-size: 1.2rem;
+			font-weight: 500;
+			margin-bottom: 1rem;
+		}
+
+		.sidebar p {
+			margin-bottom: 1.5rem;
+		}
+
+		.social-links {
+			margin-top: 1rem;
+		}
+
+		.social-links a {
+			color: #8b8e94;
+			font-size: 1.5rem;
+			margin: 0 10px;
+			transition: color 0.2s;
+		}
+
+		.social-links a:hover {
+			color: #fff;
+		}
+
+		.section {
+			margin-bottom: 3rem;
+		}
+
+		.section h2 {
+			font-size: 1.5rem;
+			font-weight: 500;
+			margin-bottom: 1.5rem;
+			padding-bottom: 0.5rem;
+			border-bottom: 1px solid #272a30;
+		}
+
+		.projects-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1.5rem;
+		}
+
+		.project-card {
+			background-color: rgba(255, 255, 255, 0.03);
+			border-radius: 6px;
+			padding: 1.5rem;
+			transition: transform 0.2s, background-color 0.2s;
+		}
+
+		.project-card:hover {
+			transform: translateY(-3px);
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+
+		.project-card h3 {
+			display: flex;
+			align-items: center;
+			margin-bottom: 0.75rem;
+		}
+
+		.project-card h3 i {
+			margin-right: 0.5rem;
+			color: #5d8ffc;
+		}
+
+		.project-card p {
+			margin-bottom: 1rem;
+			opacity: 0.8;
+		}
+
+		.project-link {
+			display: inline-block;
+			color: #5d8ffc;
+			text-decoration: none;
+			margin-bottom: 1rem;
+			font-size: 0.9rem;
+			transition: color 0.2s;
+		}
+
+		.project-link:hover {
+			color: #7ba3ff;
+		}
+
+		.project-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+
+		.tag {
+			background-color: rgba(93, 143, 252, 0.1);
+			color: #5d8ffc;
+			padding: 0.25rem 0.5rem;
+			border-radius: 4px;
+			font-size: 0.7rem;
+		}
+
+		.links {
+			margin-bottom: 1.5rem;
+		}
+
+		.link {
+			display: block;
+			color: #8b8e94;
+			text-decoration: none;
+			margin-bottom: 0.5rem;
+			transition: color 0.2s, transform 0.2s;
+		}
+
+		.link i {
+			margin-right: 0.5rem;
+		}
+
+		.link:hover {
+			color: #fff;
+			transform: translateX(3px);
+		}
+
+		/* Responsive */
+		@media (max-width: 960px) {
+			.container {
+				flex-direction: column;
+			}
+
+			.sidebar {
+				width: 100%;
+				min-height: auto;
+				position: relative;
+				padding: 3rem 2rem 1.5rem;
+			}
+
+			.content {
+				width: 100%;
+				margin-left: 0;
+				padding: 1.5rem 2rem 3rem;
+			}
+		}
+	</style>
+	<script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js"
+		integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous">
 			Sentry.init({
 				dsn: 'https://47ea37e57dcf4e35be86554a53597a09@o1200319.ingest.sentry.io/6324266',
 				release: 'personal-website@1.1.2'
 			});
-			myUndefinedFunction();
 		</script>
-	</head>
-	<body>
-		<div class="grid-2">
-			<div class="section-1">
-				<i class="fas fa-code fa-5x white"></i>
-				<h2>Mikael Samvelian</h2>
-				<h3>Senior Software Engineer</h3>
-				<p>Vancouver, Canada.</p>
-				<a target="_blank" href="https://www.linkedin.com/in/mikaelsamvelian"
-					><i class="fab fa-linkedin"></i
-				></a>
-				<a target="_blank" href="https://tinyurl.com/mikaelsam"
-					><i class="fab fa-github"></i
-				></a>
-			</div>
-			<div class="section-2">
-				<h2>My Notes</h2>
-				<a
-					class="block"
-					target="_blank"
-					href="https://notes.mikaelsamvelian.com"
-				>
-					<i class="fas fa-external-link-alt"></i> notes.mikaelsamvelian.com
-				</a>
+</head>
 
-				<h2>Resume 🔒</h2>
-				<a class="block" target="_blank" href="./encrypted.html"
-					><i class="fas fa-arrow-circle-right"></i> Click here to view</a
-				>
+<body>
+	<div class="container">
+		<div class="sidebar">
+			<i class="fas fa-code fa-4x profile-icon"></i>
+			<h1>Mikael Samvelian</h1>
+			<h3>Senior Software Engineer</h3>
+			<p>Vancouver, Canada</p>
+			<div class="social-links">
+				<a href="https://www.linkedin.com/in/mikaelsamvelian" target="_blank"><i
+						class="fab fa-linkedin"></i></a>
+				<a href="https://tinyurl.com/mikaelsam" target="_blank"><i class="fab fa-github"></i></a>
 			</div>
 		</div>
-		<script
-			async
-			src="https://platform.twitter.com/widgets.js"
-			charset="utf-8"
-		></script>
-	</body>
+
+		<div class="content">
+			<div class="section">
+				<h2>Featured Projects</h2>
+				<div class="projects-grid">
+					<div class="project-card">
+						<h3><i class="fas fa-paw"></i>Pawgress</h3>
+						<p>All-in-one platform that helps independent dog trainers schedule sessions, manage clients,
+							track progress, and grow
+							their business without the administrative headache.</p>
+						<a href="https://pawgress.ca" target="_blank" class="project-link">
+							<i class="fas fa-external-link-alt"></i> Visit Pawgress.ca
+						</a>
+						<div class="project-tags">
+							<span class="tag">Next.js</span>
+							<span class="tag">TypeScript</span>
+							<span class="tag">React.js</span>
+							<span class="tag">Node.js</span>
+							<span class="tag">TailwindCSS</span>
+							<span class="tag">Cloud Run</span>
+							<span class="tag">Firestore</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="section">
+				<h2>Resources</h2>
+				<div class="links">
+					<a href="https://notes.mikaelsamvelian.com" target="_blank" class="link">
+						<i class="fas fa-book"></i> My Notes
+					</a>
+					<a href="./encrypted.html" target="_blank" class="link">
+						<i class="fas fa-lock"></i> Resume 🔒
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
 </html>
