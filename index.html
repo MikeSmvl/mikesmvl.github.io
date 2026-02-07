@@ -63,7 +63,7 @@
 			height: 100%;
 			position: relative;
 			transform-style: preserve-3d;
-			transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+			transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 			cursor: pointer;
 		}
 
@@ -533,7 +533,7 @@
 		window.addEventListener('wheel', (e) => {
 			if (scrollTimeout) return;
 			flipCard();
-			scrollTimeout = setTimeout(() => { scrollTimeout = null; }, 800);
+			scrollTimeout = setTimeout(() => { scrollTimeout = null; }, 1600);
 		}, { passive: true });
 
 		// Touch swipe to flip
