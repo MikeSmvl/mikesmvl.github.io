@@ -1,272 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
-		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous" />
 	<title>Mikael Samvelian</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+	<script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js"
+		integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous">
+		Sentry.init({
+			dsn: 'https://47ea37e57dcf4e35be86554a53597a09@o1200319.ingest.sentry.io/6324266',
+			release: 'personal-website@2.0.0'
+		});
+	</script>
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+		:root {
+			--card-w: min(90vw, 680px);
+			--sans: 'Outfit', sans-serif;
+			--body: 'DM Sans', sans-serif;
+			--link: #2a7a6f;
+			--link-hover: #1d5e55;
+		}
 
-		* {
-			margin: 0;
-			padding: 0;
-			box-sizing: border-box;
+		* { margin: 0; padding: 0; box-sizing: border-box; }
+
+		::selection { background: #2a7a6f; color: #fff; }
+
+		html, body {
+			height: 100%;
+			overflow: hidden;
 		}
 
 		body {
-			font-family: 'Inter', sans-serif;
-			background-color: #0f1115;
-			color: #8b8e94;
-			line-height: 1.6;
-		}
-
-		.container {
-			display: flex;
-			min-height: 100vh;
-		}
-
-		.sidebar {
-			width: 35%;
-			min-height: 100vh;
-			padding: 3rem;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			text-align: center;
-			position: fixed;
-		}
-
-		.content {
-			width: 65%;
-			margin-left: 35%;
-			padding: 3rem;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-		}
-
-		.profile-icon {
-			color: #fff;
-			margin-bottom: 1.5rem;
-		}
-
-		h1,
-		h2,
-		h3 {
-			color: #fff;
-			margin-bottom: 0.5rem;
-		}
-
-		.sidebar h1 {
-			font-size: 1.8rem;
-			font-weight: 600;
-		}
-
-		.sidebar h3 {
-			font-size: 1.2rem;
-			font-weight: 500;
-			margin-bottom: 1rem;
-		}
-
-		.sidebar p {
-			margin-bottom: 1.5rem;
-		}
-
-		.social-links {
-			margin-top: 1rem;
-		}
-
-		.social-links a {
-			color: #8b8e94;
-			font-size: 1.5rem;
-			margin: 0 10px;
-			transition: color 0.2s;
-		}
-
-		.social-links a:hover {
-			color: #fff;
-		}
-
-		.section {
-			margin-bottom: 3rem;
-		}
-
-		.section h2 {
-			font-size: 1.5rem;
-			font-weight: 500;
-			margin-bottom: 1.5rem;
-			padding-bottom: 0.5rem;
-			border-bottom: 1px solid #272a30;
-		}
-
-		.projects-grid {
-			display: grid;
-			grid-template-columns: 1fr;
-			gap: 1.5rem;
-		}
-
-		.project-card {
-			background-color: rgba(255, 255, 255, 0.03);
-			border-radius: 6px;
-			padding: 1.5rem;
-			transition: transform 0.2s, background-color 0.2s;
-		}
-
-		.project-card:hover {
-			transform: translateY(-3px);
-			background-color: rgba(255, 255, 255, 0.05);
-		}
-
-		.project-card h3 {
+			font-family: var(--sans);
+			background: #0a0a0a;
 			display: flex;
 			align-items: center;
-			margin-bottom: 0.75rem;
+			justify-content: center;
+			-webkit-font-smoothing: antialiased;
+			perspective: 1400px;
+			cursor: default;
 		}
 
-		.project-card h3 i {
-			margin-right: 0.5rem;
-			color: #5d8ffc;
+		/* ── Scene ── */
+		.scene {
+			width: var(--card-w);
+			aspect-ratio: 1.586 / 1;
+			perspective: 1400px;
+			opacity: 0;
+			animation: cardEnter 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
 		}
 
-		.project-card p {
-			margin-bottom: 1rem;
-			opacity: 0.8;
+		@keyframes cardEnter {
+			from { opacity: 0; transform: translateY(40px) scale(0.94); }
+			to { opacity: 1; transform: translateY(0) scale(1); }
 		}
 
-		.project-link {
-			display: inline-block;
-			color: #5d8ffc;
-			text-decoration: none;
-			margin-bottom: 1rem;
-			font-size: 0.9rem;
-			transition: color 0.2s;
+		/* ── Card (flip container) ── */
+		.card {
+			width: 100%;
+			height: 100%;
+			position: relative;
+			transform-style: preserve-3d;
+			transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+			cursor: pointer;
 		}
 
-		.project-link:hover {
-			color: #7ba3ff;
+		.card.flipped {
+			transform: rotateY(180deg) !important;
 		}
 
-		.project-tags {
+		/* ── Shared face styles ── */
+		.card-face {
+			position: absolute;
+			inset: 0;
+			border-radius: 18px;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			overflow: hidden;
+		}
+
+		/* ═══════════════════════════════════
+		   FRONT FACE
+		   ═══════════════════════════════════ */
+		.card-front {
+			background: linear-gradient(145deg, #e8e7e5 0%, #d4d3d1 25%, #e2e1df 50%, #d0cfcd 75%, #e5e4e2 100%);
+			box-shadow:
+				0 1px 2px rgba(0,0,0,0.12),
+				0 4px 8px rgba(0,0,0,0.12),
+				0 16px 32px rgba(0,0,0,0.18),
+				0 32px 80px rgba(0,0,0,0.22),
+				inset 0 1px 0 rgba(255,255,255,0.7),
+				inset 0 -1px 0 rgba(0,0,0,0.05);
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: clamp(1.25rem, 3.5vw, 2rem);
+		}
+
+		/* Light sheen */
+		.card-front::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: radial-gradient(
+				ellipse 500px 350px at var(--mx, 30%) var(--my, 30%),
+				rgba(255,255,255,0.45) 0%, transparent 65%
+			);
+			pointer-events: none;
+			z-index: 5;
+			transition: background 0.08s ease;
+		}
+
+		/* Subtle brushed metal texture */
+		.card-front::after {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: repeating-linear-gradient(
+				90deg,
+				transparent,
+				transparent 1px,
+				rgba(255,255,255,0.03) 1px,
+				rgba(255,255,255,0.03) 2px
+			);
+			pointer-events: none;
+			z-index: 4;
+		}
+
+		.card-front > * { position: relative; z-index: 6; }
+
+		/* MS Monogram */
+		.monogram {
+			font-family: var(--sans);
+			font-size: clamp(1.25rem, 3vw, 1.75rem);
+			font-weight: 700;
+			color: rgba(60, 60, 60, 0.55);
+			letter-spacing: 0.04em;
+			line-height: 1;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+		}
+
+		/* EMV Chip */
+		.chip {
+			align-self: flex-end;
+			margin-top: auto;
+			margin-bottom: auto;
+		}
+
+		.chip svg {
+			width: clamp(42px, 8vw, 58px);
+			height: auto;
+			filter: drop-shadow(0 1px 1px rgba(0,0,0,0.15));
+		}
+
+		/* Cardholder name */
+		.cardholder {
+			display: flex;
+			flex-direction: column;
+			gap: 0.125rem;
+		}
+
+		.cardholder-name {
+			font-family: var(--sans);
+			font-size: clamp(0.75rem, 1.8vw, 1rem);
+			font-weight: 500;
+			color: rgba(50, 50, 50, 0.7);
+			letter-spacing: 0.18em;
+			text-transform: uppercase;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+		}
+
+		.cardholder-title {
+			font-family: var(--sans);
+			font-size: clamp(0.5rem, 1.1vw, 0.625rem);
+			font-weight: 400;
+			color: rgba(100, 100, 100, 0.5);
+			letter-spacing: 0.12em;
+			text-transform: uppercase;
+			text-shadow: 0 1px 0 rgba(255,255,255,0.4);
+		}
+
+		/* Flip hint */
+		.flip-hint {
+			position: absolute;
+			bottom: clamp(0.75rem, 2vw, 1.25rem);
+			right: clamp(1.25rem, 3vw, 2rem);
+			font-family: var(--sans);
+			font-size: clamp(0.5rem, 1vw, 0.5625rem);
+			font-weight: 400;
+			color: rgba(100, 100, 100, 0.35);
+			letter-spacing: 0.06em;
+			z-index: 6;
+			opacity: 0;
+			animation: hintFade 0.6s ease-out 2s forwards;
+		}
+
+		@keyframes hintFade {
+			to { opacity: 1; }
+		}
+
+		/* ═══════════════════════════════════
+		   BACK FACE
+		   ═══════════════════════════════════ */
+		.card-back {
+			background: linear-gradient(165deg, #f2f1ef 0%, #e8e7e5 40%, #eeedeb 100%);
+			transform: rotateY(180deg);
+			box-shadow:
+				0 1px 2px rgba(0,0,0,0.12),
+				0 4px 8px rgba(0,0,0,0.12),
+				0 16px 32px rgba(0,0,0,0.18),
+				0 32px 80px rgba(0,0,0,0.22),
+				inset 0 1px 0 rgba(255,255,255,0.5);
+			display: flex;
+			flex-direction: column;
+		}
+
+		/* Light sheen on back */
+		.card-back::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			border-radius: inherit;
+			background: radial-gradient(
+				ellipse 500px 350px at var(--mx2, 70%) var(--my2, 30%),
+				rgba(255,255,255,0.3) 0%, transparent 60%
+			);
+			pointer-events: none;
+			z-index: 5;
+		}
+
+		.card-back > * { position: relative; z-index: 3; }
+
+		/* Magnetic stripe */
+		.mag-stripe {
+			width: 100%;
+			height: clamp(28px, 6vw, 42px);
+			background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 30%, #1a1a1a 100%);
+			margin-top: clamp(0.75rem, 2vw, 1.125rem);
+			box-shadow: 0 1px 3px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05);
+		}
+
+		/* Content area (signature strip) */
+		.back-content {
+			flex: 1;
+			padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1.25rem, 3vw, 2rem) clamp(0.75rem, 2vw, 1rem);
+			display: flex;
+			flex-direction: column;
+			gap: clamp(0.5rem, 1.5vw, 0.75rem);
+			z-index: 6;
+		}
+
+		/* Links row */
+		.back-links {
 			display: flex;
 			flex-wrap: wrap;
-			gap: 0.5rem;
+			gap: 0.375rem;
 		}
 
-		.tag {
-			background-color: rgba(93, 143, 252, 0.1);
-			color: #5d8ffc;
-			padding: 0.25rem 0.5rem;
-			border-radius: 4px;
-			font-size: 0.7rem;
-		}
-
-		.links {
-			margin-bottom: 1.5rem;
-		}
-
-		.link {
-			display: block;
-			color: #8b8e94;
+		.back-links a {
+			display: inline-flex;
+			align-items: center;
+			gap: 0.375rem;
+			font-family: var(--sans);
+			font-size: clamp(0.6rem, 1.2vw, 0.6875rem);
+			font-weight: 500;
+			color: var(--link);
 			text-decoration: none;
-			margin-bottom: 0.5rem;
-			transition: color 0.2s, transform 0.2s;
+			padding: 0.3125rem 0.6875rem;
+			border-radius: 6px;
+			background: rgba(42, 122, 111, 0.1);
+			transition: all 0.2s ease;
 		}
 
-		.link i {
-			margin-right: 0.5rem;
+		.back-links a:hover {
+			background: rgba(42, 122, 111, 0.2);
+			color: var(--link-hover);
+			transform: translateY(-1px);
 		}
 
-		.link:hover {
-			color: #fff;
-			transform: translateX(3px);
+		.back-links a:focus-visible {
+			outline: 2px solid var(--link);
+			outline-offset: 2px;
 		}
 
-		/* Responsive */
-		@media (max-width: 960px) {
-			.container {
-				flex-direction: column;
-			}
+		.back-links a svg {
+			width: clamp(11px, 1.3vw, 13px);
+			height: clamp(11px, 1.3vw, 13px);
+			flex-shrink: 0;
+		}
 
-			.sidebar {
-				width: 100%;
-				min-height: auto;
-				position: relative;
-				padding: 3rem 2rem 1.5rem;
-			}
+		/* Project section */
+		.back-project {
+			background: rgba(255,255,255,0.6);
+			border-radius: 8px;
+			padding: clamp(0.625rem, 1.5vw, 0.875rem);
+			border: 1px solid rgba(0,0,0,0.06);
+		}
 
-			.content {
-				width: 100%;
-				margin-left: 0;
-				padding: 1.5rem 2rem 3rem;
+		.back-project-label {
+			font-family: var(--sans);
+			font-size: clamp(0.4375rem, 0.9vw, 0.5rem);
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.1em;
+			color: #999;
+			margin-bottom: 0.25rem;
+		}
+
+		.back-project a {
+			text-decoration: none;
+			color: inherit;
+			display: block;
+		}
+
+		.back-project a:focus-visible {
+			outline: 2px solid var(--link);
+			outline-offset: 2px;
+			border-radius: 4px;
+		}
+
+		.back-project-name {
+			font-family: var(--sans);
+			font-size: clamp(0.8125rem, 1.8vw, 1rem);
+			font-weight: 600;
+			color: #1d1d1f;
+			display: flex;
+			align-items: center;
+			gap: 0.25rem;
+		}
+
+		.back-project-name .arr {
+			color: var(--link);
+			transition: transform 0.2s ease;
+		}
+
+		.back-project a:hover .arr {
+			transform: translate(2px, -2px);
+		}
+
+		.back-project-desc {
+			font-family: var(--body);
+			font-size: clamp(0.5625rem, 1.1vw, 0.6875rem);
+			font-weight: 300;
+			color: #555;
+			line-height: 1.55;
+			margin-top: 0.125rem;
+		}
+
+		.back-project-tech {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.25rem;
+			margin-top: 0.375rem;
+		}
+
+		.back-project-tech span {
+			font-family: var(--sans);
+			font-size: clamp(0.4375rem, 0.85vw, 0.5rem);
+			font-weight: 500;
+			color: #888;
+			padding: 0.125rem 0.375rem;
+			background: rgba(0,0,0,0.04);
+			border-radius: 3px;
+		}
+
+		/* Back footer */
+		.back-footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: auto;
+		}
+
+		.back-location {
+			font-family: var(--sans);
+			font-size: clamp(0.4375rem, 0.9vw, 0.5rem);
+			font-weight: 400;
+			color: #aaa;
+			letter-spacing: 0.05em;
+		}
+
+		.back-url {
+			font-family: var(--sans);
+			font-size: clamp(0.4375rem, 0.9vw, 0.5rem);
+			font-weight: 400;
+			color: #aaa;
+			letter-spacing: 0.03em;
+		}
+
+		/* ── Mobile ── */
+		@media (max-width: 540px) {
+			html, body { overflow: auto; height: auto; }
+			body { padding: 2rem 1rem; min-height: 100vh; }
+			.scene { aspect-ratio: auto; min-height: 420px; }
+		}
+
+		/* ── Reduced motion ── */
+		@media (prefers-reduced-motion: reduce) {
+			*, *::before, *::after {
+				animation-duration: 0.01ms !important;
+				animation-iteration-count: 1 !important;
+				transition-duration: 0.01ms !important;
 			}
+			.scene { opacity: 1; }
+			.flip-hint { opacity: 1; }
 		}
 	</style>
-	<script src="https://browser.sentry-cdn.com/6.19.7/bundle.min.js"
-		integrity="sha384-KXjn4K+AYjp1cparCXazrB+5HKdi69IUYz8glD3ySH3fnDgMX3Wg6VTMvXUGr4KB" crossorigin="anonymous">
-			Sentry.init({
-				dsn: 'https://47ea37e57dcf4e35be86554a53597a09@o1200319.ingest.sentry.io/6324266',
-				release: 'personal-website@1.1.2'
-			});
-		</script>
 </head>
-
 <body>
-	<div class="container">
-		<div class="sidebar">
-			<i class="fas fa-code fa-4x profile-icon"></i>
-			<h1>Mikael Samvelian</h1>
-			<h3>Staff Software Engineer</h3>
-			<p>Vancouver, Canada</p>
-			<div class="social-links">
-				<a href="https://www.linkedin.com/in/mikaelsamvelian" target="_blank"><i
-						class="fab fa-linkedin"></i></a>
-				<a href="https://tinyurl.com/mikaelsam" target="_blank"><i class="fab fa-github"></i></a>
-			</div>
-		</div>
+	<div class="scene" id="scene">
+		<div class="card" id="card">
 
-		<div class="content">
-			<div class="section">
-				<h2>Featured Projects</h2>
-				<div class="projects-grid">
-					<div class="project-card">
-						<h3><i class="fas fa-paw"></i>Pawgress</h3>
-						<p>All-in-one platform that helps independent dog trainers schedule sessions, manage clients,
-							track progress, and grow
-							their business without the administrative headache.</p>
-						<a href="https://pawgress.ca" target="_blank" class="project-link">
-							<i class="fas fa-external-link-alt"></i> Visit Pawgress.ca
+			<!-- ═══ FRONT ═══ -->
+			<div class="card-face card-front" id="front">
+				<div class="monogram">MS</div>
+
+				<!-- EMV Chip -->
+				<div class="chip">
+					<svg viewBox="0 0 60 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<rect x="0.5" y="0.5" width="59" height="45" rx="5.5" fill="url(#chipGold)" stroke="url(#chipEdge)"/>
+						<rect x="0.5" y="0.5" width="59" height="45" rx="5.5" fill="url(#chipSheen)" style="mix-blend-mode:overlay"/>
+						<!-- Contact pads -->
+						<line x1="20" y1="0" x2="20" y2="46" stroke="#b8960c" stroke-width="0.5" opacity="0.4"/>
+						<line x1="40" y1="0" x2="40" y2="46" stroke="#b8960c" stroke-width="0.5" opacity="0.4"/>
+						<line x1="0" y1="15" x2="60" y2="15" stroke="#b8960c" stroke-width="0.5" opacity="0.4"/>
+						<line x1="0" y1="31" x2="60" y2="31" stroke="#b8960c" stroke-width="0.5" opacity="0.4"/>
+						<rect x="21" y="16" width="18" height="14" rx="2" fill="none" stroke="#b8960c" stroke-width="0.75" opacity="0.5"/>
+						<rect x="24" y="19" width="12" height="8" rx="1" fill="#c4a530" opacity="0.15"/>
+						<defs>
+							<linearGradient id="chipGold" x1="0" y1="0" x2="60" y2="46">
+								<stop offset="0%" stop-color="#dcc464"/>
+								<stop offset="30%" stop-color="#c9ab3a"/>
+								<stop offset="60%" stop-color="#ddc96e"/>
+								<stop offset="100%" stop-color="#c4a22e"/>
+							</linearGradient>
+							<linearGradient id="chipEdge" x1="0" y1="0" x2="60" y2="46">
+								<stop offset="0%" stop-color="#b89a20"/>
+								<stop offset="100%" stop-color="#a68b18"/>
+							</linearGradient>
+							<linearGradient id="chipSheen" x1="0" y1="0" x2="30" y2="46">
+								<stop offset="0%" stop-color="white" stop-opacity="0.3"/>
+								<stop offset="50%" stop-color="white" stop-opacity="0"/>
+								<stop offset="100%" stop-color="white" stop-opacity="0.15"/>
+							</linearGradient>
+						</defs>
+					</svg>
+				</div>
+
+				<div class="cardholder">
+					<span class="cardholder-name">Mikael Samvelian</span>
+					<span class="cardholder-title">Staff Software Engineer</span>
+				</div>
+
+				<span class="flip-hint">Click to flip</span>
+			</div>
+
+			<!-- ═══ BACK ═══ -->
+			<div class="card-face card-back" id="back">
+				<div class="mag-stripe" aria-hidden="true"></div>
+
+				<div class="back-content">
+					<nav class="back-links" aria-label="Links">
+						<a href="https://www.linkedin.com/in/mikaelsamvelian" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+							LinkedIn
 						</a>
-						<div class="project-tags">
-							<span class="tag">Next.js</span>
-							<span class="tag">TypeScript</span>
-							<span class="tag">React.js</span>
-							<span class="tag">Node.js</span>
-							<span class="tag">TailwindCSS</span>
-							<span class="tag">Cloud Run</span>
-							<span class="tag">Firestore</span>
+						<a href="https://tinyurl.com/mikaelsam" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+							<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+							GitHub
+						</a>
+						<a href="https://notes.mikaelsamvelian.com" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+								<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+							</svg>
+							My Notes
+						</a>
+					</nav>
+
+					<div class="back-project">
+						<p class="back-project-label">Featured Project</p>
+						<a href="https://pawgress.ca" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+							<p class="back-project-name">Pawgress <span class="arr">&#8599;</span></p>
+							<p class="back-project-desc">
+								All-in-one platform that helps independent dog trainers schedule sessions, manage clients, track progress, and grow their business without the administrative headache.
+							</p>
+						</a>
+						<div class="back-project-tech">
+							<span>Next.js</span>
+							<span>TypeScript</span>
+							<span>React.js</span>
+							<span>Node.js</span>
+							<span>TailwindCSS</span>
+							<span>Cloud Run</span>
+							<span>Firestore</span>
 						</div>
 					</div>
-				</div>
-			</div>
 
-			<div class="section">
-				<h2>Resources</h2>
-				<div class="links">
-					<a href="https://notes.mikaelsamvelian.com" target="_blank" class="link">
-						<i class="fas fa-book"></i> My Notes
-					</a>
-					<a href="./encrypted.html" target="_blank" class="link">
-						<i class="fas fa-lock"></i> Resume 🔒
-					</a>
+					<div class="back-footer">
+						<span class="back-location">Vancouver, Canada</span>
+						<span class="back-url">mikaelsamvelian.com</span>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
 
+	<script>
+		const scene = document.getElementById('scene');
+		const card = document.getElementById('card');
+		const front = document.getElementById('front');
+		const back = document.getElementById('back');
+		const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+		const isMobile = window.matchMedia('(max-width: 540px)').matches;
+
+		let isFlipped = false;
+
+		function flipCard() {
+			isFlipped = !isFlipped;
+			card.classList.toggle('flipped', isFlipped);
+		}
+
+		// Click to flip
+		card.addEventListener('click', flipCard);
+
+		// Scroll to flip (debounced)
+		let scrollTimeout = null;
+		window.addEventListener('wheel', (e) => {
+			if (scrollTimeout) return;
+			flipCard();
+			scrollTimeout = setTimeout(() => { scrollTimeout = null; }, 800);
+		}, { passive: true });
+
+		// Touch swipe to flip
+		let touchStartY = 0;
+		card.addEventListener('touchstart', (e) => {
+			touchStartY = e.touches[0].clientY;
+		}, { passive: true });
+		card.addEventListener('touchend', (e) => {
+			const diff = touchStartY - e.changedTouches[0].clientY;
+			if (Math.abs(diff) > 30) flipCard();
+		}, { passive: true });
+
+		// 3D tilt + light sheen
+		if (!isMobile && !prefersReducedMotion) {
+			scene.addEventListener('mousemove', (e) => {
+				const rect = scene.getBoundingClientRect();
+				const x = e.clientX - rect.left;
+				const y = e.clientY - rect.top;
+				const cx = rect.width / 2;
+				const cy = rect.height / 2;
+
+				const rotX = ((y - cy) / cy) * -4;
+				const rotY = ((x - cx) / cx) * 4;
+
+				// Only apply tilt if not mid-flip
+				if (!card.style.transform || card.classList.contains('flipped')) {
+					const base = isFlipped ? 'rotateY(180deg)' : '';
+					card.style.transition = 'transform 0.1s ease-out';
+					card.style.transform = `${base} rotateX(${rotX}deg) rotateY(${isFlipped ? 180 + rotY : rotY}deg)`;
+				}
+
+				const mx = (x / rect.width) * 100;
+				const my = (y / rect.height) * 100;
+				front.style.setProperty('--mx', mx + '%');
+				front.style.setProperty('--my', my + '%');
+				back.style.setProperty('--mx2', (100 - mx) + '%');
+				back.style.setProperty('--my2', my + '%');
+			});
+
+			scene.addEventListener('mouseleave', () => {
+				card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
+				card.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+			});
+		}
+	</script>
+</body>
 </html>
