@@ -102,7 +102,7 @@
 
 
 		.card.flipped {
-			transform: rotateY(180deg) !important;
+			transform: rotateY(180deg);
 		}
 
 		/* ── Shared face styles ── */
@@ -113,6 +113,7 @@
 			backface-visibility: hidden;
 			-webkit-backface-visibility: hidden;
 			overflow: hidden;
+			transform: translateZ(1px);
 		}
 
 		/* ═══════════════════════════════════
@@ -131,6 +132,10 @@
 			flex-direction: column;
 			justify-content: space-between;
 			padding: clamp(1.25rem, 3.5vw, 2rem);
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
+			/* Force Safari to "flatten" the face and move it 1px forward */
+			transform: translateZ(1px);
 		}
 
 		/* Light sheen */
@@ -182,6 +187,9 @@
 			align-self: flex-end;
 			margin-top: auto;
 			margin-bottom: auto;
+			/* Ensures the chip stays glued to the front and doesn't "poke" through */
+			-webkit-transform: translateZ(0);
+			transform: translateZ(0);
 		}
 
 		.chip svg {
@@ -243,7 +251,7 @@
 		   ═══════════════════════════════════ */
 		.card-back {
 			background: linear-gradient(165deg, #f2f1ef 0%, #e8e7e5 40%, #eeedeb 100%);
-			transform: rotateY(180deg);
+			transform: rotateY(180deg) translateZ(1px);
 			box-shadow:
 				0 1px 2px rgba(0, 0, 0, 0.12),
 				0 4px 8px rgba(0, 0, 0, 0.12),
@@ -252,6 +260,8 @@
 				inset 0 1px 0 rgba(255, 255, 255, 0.5);
 			display: flex;
 			flex-direction: column;
+			backface-visibility: hidden;
+			-webkit-backface-visibility: hidden;
 		}
 
 		/* Light sheen on back */
@@ -590,6 +600,7 @@
 
 	<script>
 		const scene = document.getElementById('scene');
+		const cardTilt = document.getElementById('cardTilt'); // Targeted the tilt wrapper
 		const card = document.getElementById('card');
 		const front = document.getElementById('front');
 		const back = document.getElementById('back');
@@ -603,26 +614,11 @@
 			card.classList.toggle('flipped', isFlipped);
 		}
 
-		// Click to flip
-		card.addEventListener('click', flipCard);
-
-		// Scroll to flip (debounced)
-		let scrollTimeout = null;
-		window.addEventListener('wheel', (e) => {
-			if (scrollTimeout) return;
+		card.addEventListener('click', (e) => {
+			// Prevent flip if clicking a link
+			if (e.target.closest('a')) return;
 			flipCard();
-			scrollTimeout = setTimeout(() => { scrollTimeout = null; }, 1600);
-		}, { passive: true });
-
-		// Touch swipe to flip
-		let touchStartY = 0;
-		card.addEventListener('touchstart', (e) => {
-			touchStartY = e.touches[0].clientY;
-		}, { passive: true });
-		card.addEventListener('touchend', (e) => {
-			const diff = touchStartY - e.changedTouches[0].clientY;
-			if (Math.abs(diff) > 30) flipCard();
-		}, { passive: true });
+		});
 
 		// 3D tilt + light sheen
 		if (!isMobile && !prefersReducedMotion) {
@@ -633,24 +629,45 @@
 				const cx = rect.width / 2;
 				const cy = rect.height / 2;
 
-				const rotX = ((y - cy) / cy) * -4;
-				const rotY = ((x - cx) / cx) * 4;
+				// Tilt logic
+				const rotX = ((y - cy) / cy) * -8; // Slightly increased for better effect
+				const rotY = ((x - cx) / cx) * 8;
 
+				// Apply tilt ONLY to the wrapper
 				cardTilt.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
 
+				// Sheen logic
 				const mx = (x / rect.width) * 100;
 				const my = (y / rect.height) * 100;
+
 				front.style.setProperty('--mx', mx + '%');
 				front.style.setProperty('--my', my + '%');
+
+				// On the back, the X axis is mirrored
 				back.style.setProperty('--mx2', (100 - mx) + '%');
 				back.style.setProperty('--my2', my + '%');
 			});
 
 			scene.addEventListener('mouseleave', () => {
-				card.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-				card.style.transform = isFlipped ? 'rotateY(180deg)' : '';
+				// Reset the tilt wrapper smoothly
+				cardTilt.style.transition = 'transform 0.5s ease-out';
+				cardTilt.style.transform = 'rotateX(0deg) rotateY(0deg)';
+
+				// Remove transition after it finishes so it's snappy for next mousemove
+				setTimeout(() => { cardTilt.style.transition = ''; }, 500);
 			});
 		}
+
+		// Touch swipe to flip
+		let touchStartY = 0;
+		card.addEventListener('touchstart', (e) => {
+			touchStartY = e.touches[0].clientY;
+		}, { passive: true });
+
+		card.addEventListener('touchend', (e) => {
+			const diff = touchStartY - e.changedTouches[0].clientY;
+			if (Math.abs(diff) > 30) flipCard();
+		}, { passive: true });
 	</script>
 </body>
 
